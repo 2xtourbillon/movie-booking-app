@@ -55,3 +55,28 @@ times = [
 # seats
 seatList = []
 seatSelected = []
+
+#app class
+class Application(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title('Cinema Booking')
+        self.createWidgets()
+
+    def updateMovies(self, event=None):
+        self.movieCombo['values'] = movies[self.genreCombo.get()]
+
+    def createWidgets(self):
+        """Create all widgets to be initialized"""
+        headingLabel = tk.Label(self, text='Cinema Seat Booking', font='Arial 12 bold')
+        headingLabel.grid(row=0, column=0, columnspan=5, padx=10, pady=10, sticky='w')
+        tkinter.ttk.Separator(self, orient='Horizontal').grid(row=1, column=0, columnspan=5, sticky='w')
+
+        day = tk.Frame(self)
+        tk.Label(day, text='________').pack()
+        tk.Label(day, text='Today', font='Arial 10 underlined').pack()
+        tk.Label(day, text='').pack()
+        day.grid(row=2, column=0, padx=10)
+
+app = Application()
+app.mainloop()
