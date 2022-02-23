@@ -91,11 +91,20 @@ class Application(tk.Tk):
         # Movie combo box
         tk.Label(self, text='Movie: ').grid(row=2, column=3, padx=(10,0))
         self.movieCombo = tkinter.ttk.Combobox(width=15, state='readonly')
-        # self.movieCombo.bind('<<ComboboxSelected>>', self.createTimeButtons) #to be creatd
+        self.movieCombo.bind('<<ComboboxSelected>>', self.createTimeButtons) #to be creatd
         self.movieCombo.set('Select Movie')
         self.movieCombo.grid(row=2, column=4, padx=(10,0))
         tkinter.ttk.Separator(self, orient='horizontal').grid(row=3, column=0, columnspan=5, sticky='ew')
 
-app = Application()
+    def createTimeButtons(self, event=None):
+        tk.Label(self, text='Select Time Slot', font='Arial 11 bold underline').grid(row=4, column=2, columnspan=2, pady=5)
+        Time = tk.Frame(self)
+        Time.grid(row=5, column=0, columnspan=5)
 
+        #create loop for the times
+        for i in range(14):
+            tk.Button(Time, text=times[i], command=self.seatSelection) \
+                .grid(row=4+i//7, column=i&7)
+
+app = Application()
 app.mainloop()
