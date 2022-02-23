@@ -79,10 +79,20 @@ class Application(tk.Tk):
         tk.Label(day, text='').pack()
         day.grid(row=2, column=0, padx=10)
 
+        # Genre combo box
         tk.Label(self, text='Genre: ').grid(row=2, column=1, padx=(10,0))
         self.genreCombo = tkinter.ttk.Combobox(self, width=15, values=list(movies.keys()), state='readonly')
         self.genreCombo.set('Select Genre')
         self.genreCombo.bind('<<ComboboxSelected>>', self.updateMovies)
+        self.genreCombo.grid(row=2, column=2)
+
+        # Movie combo box
+        tk.Label(self, text='Movie: ').grid(row=2, column=3, padx=(10,0))
+        self.movieCombo = tkinter.ttk.Combobox(width=15, state='readonly')
+        self.movieCombo.bind('<<ComboboxSelected>>', self.createTimeButtons) #to be creatd
+        self.movieCombo.set('Select Movie')
+        self.movieCombo.grid(row=2, column=4, padx=(10,0))
+        tkinter.ttk.Separator(self, orient='horizontal').grid(row=3, column=0, columnspan=5, sticky='w')
 
 
 app = Application()
