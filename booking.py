@@ -72,11 +72,18 @@ class Application(tk.Tk):
         headingLabel.grid(row=0, column=0, columnspan=5, padx=10, pady=10, sticky='w')
         tkinter.ttk.Separator(self, orient='Horizontal').grid(row=1, column=0, columnspan=5, sticky='w')
 
+        # day widget
         day = tk.Frame(self)
         tk.Label(day, text='________').pack()
         tk.Label(day, text='Today', font='Arial 10 underlined').pack()
         tk.Label(day, text='').pack()
         day.grid(row=2, column=0, padx=10)
+
+        tk.Label(self, text='Genre: ').grid(row=2, column=1, padx=(10,0))
+        self.genreCombo = tkinter.ttk.Combobox(self, width=15, values=list(movies.keys()), state='readonly')
+        self.genreCombo.set('Select Genre')
+        self.genreCombo.bind('<<ComboboxSelected>>', self.updateMovies)
+
 
 app = Application()
 app.mainloop()
