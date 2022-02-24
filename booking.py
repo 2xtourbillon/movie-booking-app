@@ -124,5 +124,24 @@ class Application(tk.Tk):
         # add separator
         tkinter.ttk.Separator(window, orient='horizontal').grid(row=2, column=0, pady=(0,5), sticky='ew')
         
+        w = tk.canvas(window, width=500, height=15)
+        w.create_rectangle(10, 0, 490, 10, fill='black')
+        w.grid(row=3, column=0)
+        tk.screen(window, text='SCREEN').grid(row=4, column=0, pady=(0, 10))
+        seats = tk.Frame(window)
+        seats.grid(row=5, column=0)
+        seatList.clear()
+        seatSelected.clear()
+
+        for i in range(4):
+            temp=[]
+            for j in range(15):
+                but = tk.Button(seats, bd=2, bg='green', activebackground='forestGreen', command=lambda x=i, y=j: self.selected(x, y))
+                temp.append(but)
+                but.grid(row=i, column=j, padx=5, pady=5)
+            seatList.append(temp)
+        
+        tk.Button(window, text='Book Seats', bg='black', fg='white', command=self.bookseat).grid(row=6, column=0, pady=10)
+
 app = Application()
 app.mainloop()
